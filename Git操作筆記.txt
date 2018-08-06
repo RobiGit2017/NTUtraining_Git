@@ -1,0 +1,64 @@
+<到指定資料夾>
+cd path   #改變路徑
+dir    #查看當前位置有哪些資料
+
+git init    #建立.git記錄檔(repository檔案庫)
+git add filename    # git ./ #增加當前資料夾所有檔案
+	####若是add錯誤檔案要怎麼辦?要如何撤銷?
+	
+git status    #顯示git當前狀態
+
+<將編修檔案存至檔案庫repository>
+git commit -m "Info" --author="uaername<email>"
+    #git commit --amend -m "new Info" --author="username<email>"    #修改作業說明與操作者資料
+    #gitk    #啟動圖形檢式模式
+    ####若是commit錯誤檔案要怎麼辦?要如何撤銷?
+
+git log
+
+
+<>
+# git reset HEAD filename
+# git reset --soft HEAD^
+# git commit --amend --no-edit
+git log
+
+<>
+git remote add origin https://github.com/RobiGit2017/20170728_GliaCloud_Python-Exam.git
+git remote -v    #檢查是否有remote成功
+git push -u origin master
+
+git push origin "filename"
+
+#
+git clone GitPath
+#
+git branch new_branch
+git branch -a
+git checkout new_branch
+git checkout master
+#
+git push origin HEAD
+git push origin "new_branch"
+#
+git merge feature
+
+
+<合併A repository到B repository>
+Subtree merge
+
+You can merge repository A into a subdirectory of a project B using the subtree merge strategy. This is described in Subtree Merging and You by Markus Prinz.
+
+git remote add -f Bproject /path/to/B
+git merge -s ours --no-commit Bproject/master
+git read-tree --prefix=dir-B/ -u Bproject/master
+git commit -m "Merge B project as our subdirectory"
+git pull -s subtree Bproject master
+
+##如果只是合併，沒有目錄之
+If you want to merge project-a into project-b:
+
+cd path/to/project-b
+git remote add project-a path/to/project-a
+git fetch project-a
+git merge project-a/master # or whichever branch you want to merge
